@@ -1,0 +1,43 @@
+
+div{
+  font-family: Arial, Helvetica, sans-serif;
+  border-style: dashed;
+  border-top : 4px dashed red;
+  border-right: 4px dashed green;
+  border-left : 4px dashed purple;
+  border-block-end: 4px dashed blue;
+    padding:  3px;
+    background: white;
+    width: 65%;
+    border-radius: 15px;
+   }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    background-clip: padding-box; 
+   }
+   
+   tr{
+     background-color: rgb(15, 160, 80);
+     color: yellow;
+     border-radius: 15px;
+   }
+
+   th {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: #8cd7ce;
+     color: #3f7b1c;
+     font-size: 24px;
+     text-align: left;
+   }
+
+  td {
+  background-color: #d24023;
+   color:yellow
+   }
+
+  th:hover {
+    background-color:#fffd52;
+    color:black;
+  }
