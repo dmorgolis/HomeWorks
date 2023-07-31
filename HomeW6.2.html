@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Sum of Three Numbers</title>
+</head>
+<body>
+<h1>Enter three numbers</h1>
+<input type="text" id="a" placeholder="Number a">
+<input type="text" id="b" placeholder="Number b">
+<input type="text" id="c" placeholder="Number c">
+<button onclick="sumThreeNumbers()">Sum</button>
+<p id="result"></p>
+
+<script>
+function sumThreeNumbers() {
+  // Get three numbers from the user
+  let a = parseFloat(document.getElementById("a").value);
+  let b = parseFloat(document.getElementById("b").value);
+  let c = parseFloat(document.getElementById("c").value);
+
+  // Check if a + b = c
+  if (a + b === c) {
+    document.getElementById("result").innerHTML = "c is the sum";
+    document.getElementById("result").style.color = "green";
+  } else if (a + c === b) {
+    document.getElementById("result").innerHTML = "b is the sum";
+    document.getElementById("result").style.color = "green";
+  } else if (b + c === a) {
+    document.getElementById("result").innerHTML = "a is the sum";
+    document.getElementById("result").style.color = "green";
+  } else {
+    document.getElementById("result").innerHTML = "There is no sum equation in the entered numbers";
+    document.getElementById("result").style.color = "red";
+  }
+}
+</script>
+</body>
+</html>

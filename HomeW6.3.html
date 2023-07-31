@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Three Numbers</title>
+</head>
+<body>
+<h1>Enter three numbers</h1>
+<input type="text" id="a" placeholder="Number 1">
+<input type="text" id="b" placeholder="Number 2">
+<input type="text" id="c" placeholder="Number 3">
+<button onclick="sortNumbers()">Sort</button>
+<div id="result"></div>
+
+<script>
+function sortNumbers() {
+  // Get three numbers from the user
+  let a = parseFloat(document.getElementById("a").value);
+  let b = parseFloat(document.getElementById("b").value);
+  let c = parseFloat(document.getElementById("c").value);
+
+  // Sort the numbers
+  let numbers = [a, b, c];
+  numbers.sort((a, b) => a - b);
+
+  // Create DIVs for each number
+  let div1 = document.createElement("div");
+  div1.style.color = "green";
+  let div2 = document.createElement("div");
+  div2.style.color = "orange";
+  let div3 = document.createElement("div");
+  div3.style.color = "pink";
+
+  // Add the numbers to the DIVs
+  if (a > b && a > c) {
+    div1.innerHTML = a;
+    if (b > c) {
+      div2.innerHTML = b;
+      div3.innerHTML = c;
+    } else {
+      div2.innerHTML = c;
+      div3.innerHTML = b;
+    }
+  } else if (b > a && b > c) {
+    div1.innerHTML = b;
+    if (a > c) {
+      div2.innerHTML = a;
+      div3.innerHTML = c;
+    } else {
+      div2.innerHTML = c;
+      div3.innerHTML = a;
+    }
+  } else if (c > a && c > b) {
+    div1.innerHTML = c;
+    if (a > b) {
+      div2.innerHTML = a;
+      div3.innerHTML = b;
+    } else {
+      div2.innerHTML = b;
+      div3.innerHTML = a;
+    }
+  }
+
+  // Add the DIVs to the result div
+  document.getElementById("result").appendChild(div1);
+  document.getElementById("result").appendChild(div2);
+  document.getElementById("result").appendChild(div3);
+}
+</script>
+</body>
+</html>
