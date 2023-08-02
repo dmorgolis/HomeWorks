@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Card Number</title>
+</head>
+<body>
+  <script>
+    var number = parseInt(prompt("Please enter a number between 2 and 14 from Pack of cards: "))
+      switch (number) {
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+          document.write(number);
+          break;
+        case 11:
+        document.write("<img src=\https://thumbs.dreamstime.com/z/jack-hearts-playing-card-abstract-background-131032673.jpg?w=576>");
+          break;
+        case 12:
+        document.write("<img src=\https://thumbs.dreamstime.com/z/queen-hearts-playing-card-abstract-background-131032713.jpg?w=576>");
+          break;
+        case 13:
+        document.write("<img src=\https://thumbs.dreamstime.com/z/king-hearts-playing-card-abstract-background-131032714.jpg?w=576>");
+          break;
+        case 14:
+        document.write("<img src=\https://thumbs.dreamstime.com/z/ace-spades-playing-card-abstract-background-131033080.jpg?w=576>");
+          break;
+        default:
+          document.write("The card you selected does not have it in the package");
+          var button = document.createElement("button");
+          "<br />"
+          button.textContent = "Choose again";
+          button.onclick = function() {
+            location.reload();
+          };
+          document.body.appendChild(button);
+      }
+        printCard(number);
+  </script>
+</body>
+</html>
