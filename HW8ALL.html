@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</body>
+<title>All the HW 8</title>
+</head>
+<body>
+
+<h1>1. Draw Rectangle - יצירת מלבן</h1>
+
+<div>
+<input type="text" id="width" placeholder="Width">
+<input type="text" id="height" placeholder="Height">
+<button onclick="drawRectangle()">Draw Rectangle</button>
+</div>
+
+<script>
+function drawRectangle() {
+  let width = parseFloat(document.getElementById("width").value);
+  let height = parseFloat(document.getElementById("height").value);
+
+  while (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+    width = parseFloat(prompt("Enter the width of the rectangle: "));
+    height = parseFloat(prompt("Enter the height of the rectangle: "));
+  }
+
+  let div = document.createElement("div");
+
+  div.style.width = width + "px";
+  div.style.height = height + "px";
+
+  div.style.border = "3px solid black";
+
+  document.body.appendChild(div);
+}
+
+</script>
+
+</br>
+</br>
+
+<h1>2. Print Numbers From 10-20</h1>
+
+<button onclick="printNumbers()">Print Numbers From 10-20</button>
+<div id="numbersResult"></div>
+
+<script>
+function printNumbers() {
+  let numbersResult = document.getElementById("numbersResult");
+  numbersResult.innerHTML = "";
+
+  for (let i = 10; i <= 20; i++) {
+    numbersResult.innerHTML += `<div>${i}</div>`;
+  }
+
+  numbersResult.innerHTML += `<button onclick="clearNumbers()">Go Back</button>`;
+}
+
+function clearNumbers() {
+  document.getElementById("numbersResult").innerHTML = "";
+}
+</script>
+
+</br>
+</br>
+
+<h1>3. Sum of Numbers from 1 to 10</h1>
+
+<button onclick="sumNumbers()">The answer is... Click here</button>
+<div id="sumResult"></div>
+
+<script>
+function sumNumbers() {
+  let sum = 0;
+  for (let i = 1; i <= 10; i++) {
+    sum += i;
+  }
+  document.getElementById("sumResult").innerHTML = `<p>The Answer Is: <strong>${sum}</strong></p>
+    <button onclick="clearSum()">Go Back</button>`;
+}
+
+function clearSum() {
+  document.getElementById("sumResult").innerHTML = "";
+}
+</script>
+
+</br>
+</br>
+
+<h1>4. מספרים מ-50 עד 40</h1>
+
+<button onclick="printNumbersReverse()">The answer is... Click here</button>
+<div id="reverseResult"></div>
+
+<script>
+function printNumbersReverse() {
+  let reverseResult = document.getElementById("reverseResult");
+  reverseResult.innerHTML = "";
+
+  for (let i = 50; i >= 40; i--) {
+    reverseResult.innerHTML += `${i}<br>`;
+  }
+
+  reverseResult.innerHTML += `<button onclick="clearReverse()">Go Back</button>`;
+}
+
+function clearReverse() {
+  document.getElementById("reverseResult").innerHTML = "";
+}
+
+</script>
+
+</br>
+</br>
+
+<h1>5. מחשבון ממוצע ציוני כיתה</h1>
+
+<div id="AverageGrade"></div>
+<button onclick="CalculateAverage()">הכנס ציונים</button>
+<button id="resetButton" onclick="location.reload()" style="display:none">חזרה למצב ההתחלתי</button>
+
+<script>
+  function CalculateAverage() {
+    let sumOfGrades = 0;
+    let numberOfGrades = 0;
+    let grade;
+
+    for (let classNumber = 1; classNumber <= 3; classNumber++) {
+      while (true) {
+        grade = parseFloat(prompt("נא להזין ציון לכיתה " + classNumber + ". אם סיימת, תכניס מספר שלילי (-): "));
+        if (grade < 0) {
+          break;
+        }
+        sumOfGrades += grade;
+        numberOfGrades++;
+      }
+      let averageGrade = Math.floor(sumOfGrades / numberOfGrades);
+      document.getElementById("AverageGrade").innerHTML += `הממוצע הכיתתי של כיתה ${classNumber} הוא: ${averageGrade}<br>`;
+      sumOfGrades = 0;
+      numberOfGrades = 0;
+    }
+    document.getElementById("resetButton").style.display = "block";
+  }
+</script>
+</body>
+</html>

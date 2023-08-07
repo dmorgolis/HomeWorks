@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NBA Games Table</title>
+    <style>
+        body {
+            background-image: url(https://cdn.nba.com/manage/2021/03/court1920v3.jpg);
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .table {
+            border: 2px solid black;
+            background-color: #444;
+            color: white;
+        }
+
+        .table th, .table td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #222;
+        }
+
+        .home-winner span {
+            color:white;
+        }
+
+        .away-winner span {
+            color:white
+        }
+
+        .tie span {
+            color: rgb(222, 11, 11);
+        }
+
+        h1 {
+            text-align:center;
+            background-color:;
+            color: rgb(99, 7, 7);
+            margin-right: 6.5cm;
+        }
+
+        h2 {
+            text-align:center;
+            border: 1px solid black;
+            background-color:;
+            color: rgb(99, 7, 7);
+        }
+
+        /* Hide the "Teams List" heading */
+        h2:first-child {
+            visibility: hidden;
+            height: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hide the "Teams List" heading -->
+        <!-- Hide the "const teams" heading -->
+        <h2>הקבוצות ששיחקו היום:</h2>
+        <ul id="teams-list"></ul>
+        <h1>NBA-תוצאות משחקי הלילה ב</h1>
+        <table id="games-table" class="table">
+            <thead>
+                <tr>
+                    <th>קבוצת חוץ</th>
+                    <th>תוצאה</th>
+                    <th></th>
+                    <th>תוצאה</th>
+                    <th>קבוצת חוץ</th>
+                </tr>
+            </thead>
+            <tbody id="games-body"></tbody>
+        </table>
+    </div>
+    <script>
+        /* Hide the "const teams" heading */
+        const teams = ["New York Knicks", "Brooklyn Nets", "Chicago Bulls", "Cleveland Cavaliers",
+            "Milwaukee Bucks", "Boston Celtics", "Philadelphia 76ers", "Miami Heat",
+            "Denver Nuggets", "Golden State Warriors", "Dallas Mavericks", "Phoenix Suns"];
+
+            
+        const randomNumber = () => {
+            return Math.floor(Math.random() * 3) + 1;
+        };
+
+        const teamsListElement = document.getElementById("teams-list");
+        const gamesTableBody = document.getElementById("games-body");
+
+        // Generating teams list
+        teams.forEach(team => {
+            const li = document.createElement("li");
+            li.textContent = team;
+            teamsListElement.appendChild(li);
+        });
+
+        // Generating games table
+        for (let i = 0; i < teams.length; i += 2) {
+            const homeTeam = teams[i];
+            const awayTeam = teams[i + 1];
+            const homeScore = getRandomScore();
+            const awayScore = getRandomScore();
+            const result = getGameResult(homeTeam, awayTeam, homeScore, awayScore);
+
+            const tr = document.createElement("tr");
+            const tdHome = document.createElement("td");
+            const tdHomeResult = document.createElement("td");
+            const tdBall = document.createElement("td");
+            const tdAwayResult = document.createElement("td");
+            const tdAway = document.createElement("td");
+
+            tdHome.textContent = homeTeam;
+            tdAway.textContent = awayTeam;
+            tdHomeResult.innerHTML = result.homeResult;
+            tdBall.innerHTML = `<img src='./spinning basketball gif.gif' width='30%' height='30%'>`;
+            tdAwayResult.innerHTML = result.awayResult;
+
+            // Apply CSS classes based on the game result
+            if (result.winner === "home") {
+                tdHomeResult.className = "home-winner";
+                tdAwayResult.className = "away-winner";
+            } else if (result.winner === "away") {
+                tdHomeResult.className = "away-winner";
+                tdAwayResult.className = "home-winner";
+            } else {
+                tdHomeResult.className = "tie";
+                tdAwayResult.className = "tie";
+            }
+
+            tr.appendChild(tdHome);
+            tr.appendChild(tdHomeResult);
+            tr.appendChild(tdBall);
+            tr.appendChild(tdAwayResult);
+            tr.appendChild(tdAway);
+
+            gamesTableBody.appendChild(tr);
+        }
+
+        function getRandomScore() {
+            return Math.floor(Math.random() * 91) + 60;
+        }
+
+        function getGameResult(homeTeam, awayTeam, homeScore, awayScore) {
+            let result = {};
+            if (homeScore > awayScore) {
+                result.winner = "home";
+            } else if (awayScore > homeScore) {
+                result.winner = "away";
+            } else {
+                result.winner = "tie";
+            }
+
+            result.homeResult = `<span>${homeScore}</span>`;
+            result.awayResult = `<span>${awayScore}</span>`;
+
+            return result;
+        }
+    </script>
+</body>
+</html>
