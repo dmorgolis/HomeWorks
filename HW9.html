@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker</title>
+    <style>
+        body {
+            background-image: url(https://www.espacebuzz.com/assets/img/009/566/1200x675/jeux-d-argent-ils-gagnent-en-popularite-chez-les-jeunes.jpg);
+            background-color: #f2f2f2;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .table {
+            border: 2px solid black;
+            color: black;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        .table th, .table td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+		.table td.hafisha {
+			background-color: gray;
+		}
+
+		.table th {
+			background-color: gray;
+		}
+
+		.card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            padding: 10px;
+        }
+
+        .card img {
+            max-width: 100px;
+        }
+
+        .button-container {
+            text-align: left;
+            margin-top: 50px;
+            margin-right: 300px;
+        }
+
+        .button {
+            background-color: #0a0d0f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .winner-text {
+            background-color: #0a0d0f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <table id="games-table" class="table">
+        <thead>
+            <tr>
+                <th>אני</th>
+                <td class="button" id="next-round-button">התחל משחק</td>
+                <th>מחשב</th>
+            </tr>
+        </thead>
+        <tbody id="games-body">
+            <tr>
+                <td class="card" id="player-card"></td>
+                <td id="X"></td>
+                <td class="card" id="computer-card"></td>
+            </tr>
+            <tr>
+                <td class="hafisha" id="player-wins">0</td>
+                <td class="winner-text" id="winner-text"></td>
+                <td class="hafisha" id="computer-wins">0</td>
+            </tr>              
+        </tbody>
+    </table>
+
+    <div class="button-container">
+    </div>
+
+	<script>
+        var playerWins = 0;
+        var computerWins = 0;
+
+        var playerWinsElement = document.getElementById("player-wins");
+        var computerWinsElement = document.getElementById("computer-wins");
+        var drawSymbolElement = document.getElementById("draw-symbol");
+
+        // יצירת קלף עבור מספר מסויים
+        function createCard(number) {
+            switch (number) {
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                    return `<div class="card"><img src='./2imgs/${number}.png' /><div>${number}</div></div>`;
+                case 11:
+                    return `<div class="card"><img src='./2imgs/Q.png' /><div>${number}</div></div>`;
+                case 12:
+                    return `<div class="card"><img src='./2imgs/Q.png' /><div>${number}</div></div>`;
+                case 13:
+                    return `<div class="card"><img src='./2imgs/K.png' /><div>${number}</div></div>`;
+                case 14:
+                    return `<div class="card"><img src='./2imgs/A.png' /><div>${number}</div></div>`;
+                default:
+                    return `<div class="card"><img src='./2imgs/x.png' /><div>${number}</div></div>`;
+            }
+        }
+
+        // גרילת מספר בין 2 ל-14
+        function generateNumber() {
+            return Math.floor(Math.random() * 13) + 2;
+        }
+
+        // גרילת קלף עבור משתמש והצגתו
+        function generatePlayerCard() {
+            var playerNumber = generateNumber();
+            var playerCard = createCard(playerNumber);
+            document.getElementById("player-card").innerHTML = playerCard;
+            return playerNumber;
+        }
+
+        // גרילת קלף עבור מחשב והצגתו
+        function generateComputerCard() {
+            var computerNumber = generateNumber();
+            var computerCard = createCard(computerNumber);
+            document.getElementById("computer-card").innerHTML = computerCard;
+            return computerNumber;
+        }
+
+
+        // בדיקת מנצח והצגת התוצאה
+        function displayResult(playerNumber, computerNumber) {
+    var winner = "";
+    if (playerNumber > computerNumber) {
+        winner = "המנצח הוא המשתמש!";
+        playerWins++;
+        playerWinsElement.textContent = playerWins;
+    } else if (computerNumber > playerNumber) {
+        winner = "המנצח הוא המחשב!";
+        computerWins++;
+        computerWinsElement.textContent = computerWins;
+    } else {
+        winner = "תיקו!";
+    }
+
+    var winnerTextElement = document.getElementById("winner-text");
+    winnerTextElement.textContent = winner;
+
+    if (playerWins === 5 || computerWins === 5) {
+        nextRoundButton.textContent = "המשחק נגמר";
+        nextRoundButton.disabled = true;
+        showGameOverImage("https://media.giphy.com/media/dmswg1IEIRPQ4/giphy.gif");
+        resetGame();
+    }
+}
+               // כפתור התחל משחק
+               var nextRoundButton = document.getElementById("next-round-button");
+        nextRoundButton.addEventListener("click", function() {
+            var playerNumber = generatePlayerCard();
+            var computerNumber = generateComputerCard();
+            displayResult(playerNumber, computerNumber);
+
+            // עדכון ניצחונות והצגת התמונה
+            if (playerWins === 5) {
+                nextRoundButton.textContent = "המשחק נגמר (ניצחת)";
+                nextRoundButton.disabled = true;
+                showGameOverImage("");
+                resetGame();
+            } else if (computerWins === 5) {
+                nextRoundButton.textContent = "המשחק נגמר (המחשב ניצח)";
+                nextRoundButton.disabled = true;
+                showGameOverImage("");
+                resetGame();
+            }
+        });
+        
+        // הצגת תמונת סיום משחק
+        function showGameOverImage(imageUrl) {
+            var xElement = document.getElementById("X");
+            xElement.innerHTML = `<img src="${imageUrl}" alt="תמונת סיום משחק" style="max-width: 100%; max-height: 100%;">`;
+        }
+
+        // איפוס המשחק
+        function resetGame() {
+            playerWins = 0;
+            computerWins = 0;
+            playerWinsElement.textContent = playerWins;
+            computerWinsElement.textContent = computerWins;
+        }
+    
+    </script>
+</body>
+</html>
