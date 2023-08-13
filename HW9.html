@@ -74,9 +74,33 @@
             border: none;
             cursor: pointer;
         }
-
+        /* עיצוב כללי במצב טלפון */
+        @media (max-width: 768px) {
+            .table {
+                width: 90%;
+            }
+            
+            .card {
+                font-size: 14px;
+                padding: 5px;
+            }
+            
+            .card img {
+                max-width: 60px;
+            }
+            
+            .button-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            .button, .winner-text {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
     </style>
-</head>
+   </head>
 <body>
     <table id="games-table" class="table">
         <thead>
