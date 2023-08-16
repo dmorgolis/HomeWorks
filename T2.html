@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".css">
+    <title>HW2</title>
+    <style>
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to right, rgb(248, 234, 32), rgb(39, 40, 46));
+            border-radius: 10px;
+            box-shadow: 2px 2px 12px white;
+            color: white;
+        }
+
+        .login-container .login {
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input {
+            height: 30px;
+            outline: none;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 2px 2px 12px inset black;
+            background: linear-gradient(to right, rgb(248, 234, 32), rgb(39, 40, 46));
+            color: white;
+        }
+
+        .form button {
+            margin-top: 25px;
+            margin-bottom: 6px;
+            border-radius: 10px;
+            border: none;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            font-size: 19px;
+            font-weight: bold;
+            color: grey;
+            cursor: pointer;
+            background: linear-gradient(to right, rgb(248, 234, 32), rgb(39, 40, 46));
+        }
+
+        .form button:hover {
+            box-shadow: 2px 2px 12px white;
+            color: white;
+        }
+
+        .span:hover {
+            font-weight: bold;
+        }
+        .option {
+            color: black;
+        }
+
+    </style>
+    <script>
+        function checkLogin() {
+            var username = document.querySelector(".input[type='text']").value;
+            var password = document.querySelector(".input[type='password']").value;
+
+            if (username === "שם_משתמש_נכון" && password === "סיסמה_נכונה") {
+                var selectedOption = document.getElementById("siteDropdown").value;
+                if (selectedOption === "gmail") {
+                    window.location.href = "https://mail.google.com/";
+                } else if (selectedOption === "git") {
+                    window.location.href = "https://github.com/";
+                } else if (selectedOption === "facebook") {
+                    window.location.href = "https://www.facebook.com/";
+                }
+            } else {
+                alert("התחברות נכשלה. נסה שוב.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login color">Login</div>
+        <label class="color">Username :</label>
+        <input type="text" class="input">
+        <label class="color">Password :</label>
+        <input type="password" class="input">
+        <label class="color">Select Site:</label>
+        <select id="siteDropdown" class="input">
+            <option value="gmail" class="option">Gmail</option>
+            <option value="git" class="option">GitHub</option>
+            <option value="facebook" class="option">Facebook</option>
+        </select>
+        <button onclick="checkLogin()">Log-in</button>
+        <br>
+        <div class="color align">Don't have an account? <span class="span">Sign-Up</span></div>
+    </div>
+</body>
+</html>

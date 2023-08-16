@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess the Sum of Two Random Numbers</title>
+  <link rel="stylesheet" href="C.css">
+</head>
+<body>
+  <h1>תלחץ על הכפתור . במחשבון</h1>
+  <br>
+  <p>?לאחר מכאן תרשום את הסכום בחלון הריק, ותלחץ = צדקת</p>
+  <div class="calculator">
+    <div class="calculator__output">
+      <input type="number" id="number1" /> +
+      <input type="number" id="number2" /> = 
+      <input type="number" id="guess" />
+    </div>
+    <div class="calculator__keys">
+      <button class="key--operator" data-action="add">+</button>
+      <button class="key--operator" data-action="subtract">-</button>
+      <button class="key--operator" data-action="multiply">&times;</button>
+      <button class="key--operator" data-action="divide">÷</button>
+      <button class="calculator__key">7</button>
+      <button class="calculator__key">8</button>
+      <button class="calculator__key">9</button>
+      <button class="calculator__key">4</button>
+      <button class="calculator__key">5</button>
+      <button class="calculator__key">6</button>
+      <button class="calculator__key">1</button>
+      <button class="calculator__key">2</button>
+      <button class="calculator__key">3</button>
+      <button class="calculator__key">0</button>
+      <button class="calculator__key" onclick="generateRandomNumbers()">.</button>
+      <button data-action="clear">AC</button>
+      <button class="calculator__key calculator__key--enter" onclick="checkGuess()">=</button>
+    </div>
+  </div>
+    <button class="key--equal" data-action="calculate">=</button>
+  </div>
+
+  <script>
+      function generateRandomNumbers() {
+      var number1 = Math.floor(Math.random() * 100);
+      var number2 = Math.floor(Math.random() * 100);
+      document.getElementById("number1").value = number1;
+      document.getElementById("number2").value = number2;
+      resizeInput();
+    }
+
+    function checkGuess() {
+      var number1 = document.getElementById("number1").value;
+      var number2 = document.getElementById("number2").value;
+      var guess = document.getElementById("guess").value;
+      var sum = parseInt(number1) + parseInt(number2);
+      if (parseInt(guess) === sum) {
+        alert("כל הכבוד! הסכום הוא " + sum);
+      } else {
+        alert("טעית! חשב מחדש ");
+      }
+    }
+
+    function resizeInput() {
+      var number1 = document.getElementById("number1").value;
+      var number2 = document.getElementById("number2").value;
+      var guess = document.getElementById("guess");
+      var numbers = parseInt(number1) + parseInt(number2);
+      var size = numbers.toString().length;
+      guess.setAttribute("size", size);
+    }
+  </script>
+</body>
+</html>
