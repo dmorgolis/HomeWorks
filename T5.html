@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="5.css">
+  <title>User Form Challenge</title>
+</head>
+<body>
+  <div class="container">
+    <h1>מידע על המשתמש</h1>
+    <form id="userForm">
+      <input type="text" id="firstName" placeholder="שם פרטי">
+      <input type="text" id="lastName" placeholder="שם משפחה">
+      <input type="email" id="email" placeholder="Email">
+      <input type="text" id="position" placeholder="תפקיד">
+      <input type="tel" id="phoneNumber" placeholder="מספר פלאפון">
+      <input type="number" id="taxId" placeholder="מספר זהות">
+      <br><br>
+      <select id="residenceCity">
+        <option value="Tel Aviv">Tel Aviv</option>
+        <option value="Jerusalem">Jerusalem</option>
+        <option value="Haifa">Haifa</option>
+        <option value="Haifa">כל עיר אחרת</option>
+        <!-- Add more cities here -->
+      </select>
+      <br><br>
+      <input type="checkbox" id="vegetarian" value="vegetarian">
+      <label for="vegetarian">Vegetarian</label>
+      <br>
+      <div>
+        <input type="radio" id="windows" name="os" value="Windows">
+        <label for="windows">Windows</label>
+        <input type="radio" id="mac" name="os" value="Mac">
+        <label for="mac">Mac</label>
+        <input type="radio" id="linux" name="os" value="Linux">
+        <label for="linux">Linux</label>
+      </div>
+      <input type="file" id="profilePicture" accept="image/*">
+      <button type="button" onclick="displayUserInfo()">שלח</button>
+    </form>
+  </div>
+  <div id="userInfoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+         <div id="userDetails"></div>
+      <div id="profileImage"></div>
+    </div>
+  </div>
+  <script
+   src="5.js"></script>
+</body>
+</html>

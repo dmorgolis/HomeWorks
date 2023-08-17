@@ -1,0 +1,94 @@
+body {
+  font-family: 'Montez', sans-serif;
+  font-weight: 300;
+}
+
+input {
+  font-size: 20px;
+  transition-duration: 0.5s;
+}
+.wrapper {
+  background: #111;
+  background: -webkit-linear-gradient(top left, #000 0%, #fff 100%);
+  background: -moz-linear-gradient(top left, #000 0%,#fff 100%);
+  background: -o-linear-gradient(top left, #000 0%, #fff 100%);
+  background: linear-gradient(to bottom right, #000 0%, #fff 100%);
+
+  position: absolute;
+
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: 0px;
+  overflow: hidden;
+  padding-top:20px;
+
+  &.form-success {
+    background-color: #fff;
+    color: #111;
+
+    .container {
+      h1 {
+        font-size: 48px;
+        transform: translateY(-100px);
+      }
+    }
+  }
+}
+
+input {
+  font-size: 20px;
+  transition-duration: 0.5s;
+
+  ::-webkit-input-placeholder {
+    font-family: 'Pompiere', sans-serif;
+    color: #fff;
+    font-weight: 300;
+  }
+}
+
+.container{
+	  background:
+        linear-gradient( 180deg, transparent 10%, rgba(0, 0, 0, 0.1) 10% ),
+        linear-gradient( 180deg, transparent 20%, rgba(0, 0, 0, 0.1) 20% ),
+        linear-gradient( 180deg, transparent 30%, rgba(0, 0, 0, 0.1) 30% ),
+        linear-gradient( 180deg, transparent 40%, rgba(0, 0, 0, 0.1) 40% ),
+        linear-gradient( 180deg, transparent 50%, rgba(0, 0, 0, 0.1) 50% ),
+        linear-gradient( 180deg, transparent 60%, rgba(0, 0, 0, 0.1) 60% ),
+        linear-gradient( 180deg, transparent 70%, rgba(0, 0, 0, 0.1) 70% ),
+        linear-gradient( 180deg, transparent 80%, rgba(0, 0, 0, 0.1) 80% ),
+        linear-gradient( 90deg, transparent 90%, rgba(0, 0, 0, 0.1) 90% ),
+        linear-gradient( 90deg, transparent 100%, rgba(0, 0, 0, 0.1) 100% )
+        white;
+
+    width: 400px;
+	margin: 0 auto;
+	padding-top: 80px ;
+	height: 400px;
+	text-align: center;
+	
+    border: 1px solid #333;
+   box-shadow: 10px 10px 5px #000;
+	
+	h1{
+		font-size: 40px;
+		transition-duration: 2s;
+		transition-timing-function: ease-in-out;
+		font-weight: 400;
+	}
+	
+	form{
+	padding: 20px 0;
+	position: relative;
+	z-index: 2;
+	}
+	input{
+		display: block;
+		outline: 0;
+		border: 1px solid fade(blue, 20%);
+		background-color: fade(black, 80%);
+		width: 250px;
+
+		border-radius: 5px;
+    }
+  }
