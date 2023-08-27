@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>AllHW2</title>
+      </head>
+      <body>
+          <h3>HW1</h3>
+          <button onclick="runTasks();">רענן משימות A-F</button>
+          <div id="output">
+              <h4>משימה A: הצגת מערך עם forEach</h4>
+              <h4 id="taskA"></h4>
+              <h4>משימה B: הצגת מערך עם for loop</h4>
+              <h4 id="taskB"></h4>
+              <h4>משימה C: סכימת המספרים במערך עם forEach</h4>
+              <h4 id="taskC"></h4>
+              <h4>משימה D: יצירת מערך חדש עם filter</h4>
+              <h4 id="taskD"></h4>
+              <h4>משימה E: יצירת מערך חדש עם map</h4>
+              <h4 id="taskE"></h4>
+              <h4>משימה F: יצירת מערך חדש עם map</h4>
+              <h4 id="taskF"></h4>
+          </div>
+      
+          <script>
+              function runTasks() {
+                  let outputDiv = document.getElementById("output");
+      
+                  // Step 1: Create rnd_list array and add 10 random numbers (range 1-7) using push
+                  let rnd_list = [];
+                  for (let i = 0; i < 10; i++) {
+                      rnd_list.push(Math.floor(Math.random() * 7) + 1);
+                  }
+      
+                  // Step 2a: Iterate over rnd_list using forEach and display the numbers
+                  let taskA = "";
+                  rnd_list.forEach(number => {
+                      taskA += number + ", ";
+                  });
+                  document.getElementById("taskA").innerHTML = taskA;
+      
+                  // Step 2b: Iterate over rnd_list using a for loop and display the numbers
+                  let taskB = "";
+                  for (let i = 0; i < rnd_list.length; i++) {
+                      taskB += rnd_list[i] + ", ";
+                  }
+                  document.getElementById("taskB").innerHTML = taskB;
+      
+                  // Step 3c: Use forEach to calculate the sum of the numbers and display it
+                  let sum = 0;
+                  rnd_list.forEach(number => {
+                      sum += number;
+                  });
+                  document.getElementById("taskC").innerHTML = sum;
+      
+                  // Step 4d: Create a new array using filter, containing numbers smaller than 5
+                  let filteredList = rnd_list.filter(number => number < 5);
+                  document.getElementById("taskD").innerHTML = filteredList.join(", ");
+      
+                  // Step 5e: Create a new array using map, containing the numbers squared
+                  let squaredList = rnd_list.map(number => number ** 2);
+                  document.getElementById("taskE").innerHTML = squaredList.join(", ");
+      
+                  // Step 6f: Create a new array using map, containing the corresponding days of the numbers
+                  let daysList = rnd_list.map(number => {
+                      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                      return days[number - 1];
+                  });
+                  document.getElementById("taskF").innerHTML = daysList.join(", ");
+              }
+          </script>
+<br>      
+<br>
+<br>
+
+<h3>HW2</h3>
+<br>
+<style>
+
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  #resultTable {
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+
+</style>
+<script>
+const names = ["Emily", "Liam", "Sophia", "Noah", "Olivia", "Ethan", "Ava", "Jackson", "Isabella", "Aiden"];
+const resultTable = document.createElement("table");
+resultTable.id = "resultTable";
+const resultHeaderRow = resultTable.insertRow();
+//resultHeaderRow.insertCell().textContent = "תוצאה";
+
+// הוספת טבלה
+const table = document.createElement("table");
+document.body.appendChild(table);
+
+// הוספת שמות לטבלה באמצעות forEach
+const row = document.createElement("tr");
+names.forEach(name => {
+  const cell = document.createElement("td");
+  cell.textContent = name;
+  row.appendChild(cell);
+});
+  table.appendChild(row);
+
+  
+//  הוספת שמות לטבלה שורה באמצעות
+//names.forEach(name => {
+//  const row = document.createElement("tr");
+//  const cell = document.createElement("td");
+//  cell.textContent = name;
+//  row.appendChild(cell);
+//  table.appendChild(row); });
+
+
+// פונקציה להצגת תוצאות בטבלה
+function displayResultsInTable(results) {
+  clearResults(); // נקה תוצאות קודם
+  const resultRow = resultTable.insertRow();
+  results.forEach(result => {
+    const cell = resultRow.insertCell();
+    cell.textContent = result;
+  });
+  document.body.appendChild(resultTable);
+}
+
+// פונקציה לניקוי תוצאות מהטבלה
+function clearResults() {
+  while (resultTable.rows.length > 1) {
+    resultTable.deleteRow(1);
+  }
+}
+
+// כפתור לשמות באורך 4 אותיות ויותר
+const fourLetterButton = document.createElement("button");
+fourLetterButton.textContent = "שמות באורך 4 אותיות ויותר";
+fourLetterButton.onclick = () => {
+  const fourLetterNames = names.filter(name => name.length >= 4);
+  displayResultsInTable(fourLetterNames);
+};
+document.body.appendChild(fourLetterButton);
+
+// כפתור לשמות באורך 4 אותיות ופחות
+const shorterThanFourButton = document.createElement("button");
+shorterThanFourButton.textContent = "שמות באורך 4 אותיות ופחות";
+shorterThanFourButton.onclick = () => {
+  const shorterThanFourLetterNames = names.filter(name => name.length <= 4);
+  displayResultsInTable(shorterThanFourLetterNames);
+};
+document.body.appendChild(shorterThanFourButton);
+
+// כפתור לשמות משורשרים
+const concatenatedNamesButton = document.createElement("button");
+concatenatedNamesButton.textContent = "שמות משורשרים";
+concatenatedNamesButton.onclick = () => {
+  const concatenatedNames = names.join("");
+  displayResultsInTable([concatenatedNames]);
+};
+document.body.appendChild(concatenatedNamesButton);
+
+// כפתור לאורכי השמות
+const nameLengthsButton = document.createElement("button");
+nameLengthsButton.textContent = "אורכי השמות";
+nameLengthsButton.onclick = () => {
+  const nameLengths = names.map(name => name + " - אותיות " + name.length);
+  displayResultsInTable(nameLengths);
+};
+document.body.appendChild(nameLengthsButton);
+
+// כפתור לאות ראשונה בכל שם
+const firstLetterButton = document.createElement("button");
+firstLetterButton.textContent = "אות ראשונה בכל שם";
+firstLetterButton.onclick = () => {
+  const firstLetters = names.map(name => name + " בשם - "  + name[0]);
+  displayResultsInTable(firstLetters);
+};
+document.body.appendChild(firstLetterButton);
+
+// כפתור לשמות שמכילים את האות E
+const namesWithEButton = document.createElement("button");
+namesWithEButton.textContent = "שמות שמכילים את האות E";
+namesWithEButton.onclick = () => {
+  const namesWithE = names.filter(name => name.indexOf("E") !== -1);
+  displayResultsInTable(namesWithE);
+};
+document.body.appendChild(namesWithEButton);
+
+// כפתור לניקוי תוצאות מהטבלה
+const clearButton = document.createElement("button");
+clearButton.textContent = "נקה תוצאות";
+clearButton.onclick = clearResults;
+document.body.appendChild(clearButton);
+</script>
+</body>
+</html>
