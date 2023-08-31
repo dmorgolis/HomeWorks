@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>תרגילי סיכום 4</title>
+  <link rel="stylesheet" href="CM.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="container">:בחר תרגיל לבדיקה</h1>
+    <select class="container" id="exercise-select">
+      <option value="">בחר תרגיל</option>
+      <option value="1">בדיקת מספר זוגי/אי זוגי</option>
+      <option value="2">בדיקת מספר שלילי/חיובי/אפס</option>
+      <option value="3">הצגת שם היום לפי מספר היום בשבוע</option>
+      <option value="4">הצגת שם החודש לפי מספר החודש</option>
+      <option value="5">בדיקה אם האות היא אות עיקרית</option>
+      <option value="6">הצגת הציון המתאים לפי טווחים</option>
+      <option value="7">ביצוע פעולה חשבונית</option>
+    </select>
+    <button onclick="showExercise()">בחר</button>
+
+    <div id="letter-input" style="display:none">
+      <label for="letter">הזן אות באנגלית:</label>
+      <input type="text" id="letter" name="letter">
+      <button onclick="checkLetter()">בדוק</button>
+      <p id="letter-error-message" style="color:red"></p>
+    </div>
+
+    <div id="number-input" style="display:none">
+      <label for="number">הזן מספר:</label>
+      <input type="number" id="number" name="number">
+      <button onclick="checkAnswer()">בדוק</button>
+      <p id="error-message" style="color:red"></p>
+    </div>
+
+    <div id="output" style="display:none">
+      <p id="answer"></p>
+      <button onclick="reset()">בחר שוב</button>
+    </div>
+
+    <div class="container">
+      <select id="operation-select" style="display:none">
+        <option value="">בחר פעולה</option>
+        <option value="1">חיבור</option>
+        <option value="2">חיסור</option>
+        <option value="3">חילוק</option>
+        <option value="4">כפל</option>
+      </select>
+      
+      <div class="container" id="number-inputs" style="display:none">
+        <label for="num1">הזן מספר ראשון:</label>
+        <input type="number" id="num1" name="num1"><br>
+        <label for="num2">הזן מספר שני:</label>
+        <input type="number" id="num2" name="num2"><br>
+        <button class="container" onclick="calculateOperation()">חשב</button>
+        <p id="operation-answer" style="color:green"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showExercise() {
+      const exerciseSelect = document.getElementById("exercise-select");
+      const selectedExercise = exerciseSelect.value;
+
+      if (selectedExercise === "") {
+        return;
+      }
+
+      const numberInputDiv = document.getElementById("number-input");
+      numberInputDiv.style.display = "block";
+      const operationSelect = document.getElementById("operation-select");
+      operationSelect.style.display = "none";
+      const operationInputs = document.getElementById("number-inputs");
+      operationInputs.style.display = "none";
+      const letterInputDiv = document.getElementById("letter-input"); // Added this line
+      letterInputDiv.style.display = "none"; // Added this line
+
+      switch (selectedExercise) {
+        case "1":
+          document.getElementById("number").setAttribute("placeholder", "הזן מספר זוגי או אי זוגי");
+          break;
+        case "2":
+          document.getElementById("number").setAttribute("placeholder", "הזן מספר");
+          break;
+        case "3":
+          document.getElementById("number").setAttribute("placeholder", "הזן מספר בין 1 ל-7");
+          break;
+        case "4":
+          document.getElementById("number").setAttribute("placeholder", "הזן מספר בין 1 ל-12");
+          break;
+          case "5":
+          document.getElementById("letter").setAttribute("placeholder", "הזן אות עיקרית");
+          const letterInput = document.getElementById("letter");
+          letterInput.value = "";
+          numberInputDiv.style.display = "none";
+          letterInputDiv.style.display = "block" ;
+          break;
+        case "6":
+          document.getElementById("number").setAttribute("placeholder", "הזן ציון");
+          break;
+        case "7":
+          numberInputDiv.style.display = "none";
+          const operationSelect = document.getElementById("operation-select");
+          operationSelect.style.display = "block";
+          const operationInputs = document.getElementById("number-inputs");
+          operationInputs.style.display = "block";
+          break;
+        default:
+          return;
+      }
+    }
+
+    function checkAnswer() {
+      const numberInput = document.getElementById("number");
+      const number = parseInt(numberInput.value);
+      const errorMessage = document.getElementById("error-message");
+
+      if (isNaN(number)) {
+        errorMessage.textContent = "נא להזין מספר חוקי";
+        return;
+      }
+
+      const selectedExercise = document.getElementById("exercise-select").value;
+
+      switch (selectedExercise) {
+        case "1":
+          const isEven = isEvenOrOdd(number) === "Even";
+          document.getElementById("answer").textContent = isEven ? "מספר זוגי" : "מספר אי זוגי";
+          break;
+        case "2":
+          document.getElementById("answer").textContent = isNegativeOrPositive(number);
+          break;
+        case "3":
+          const dayOfWeek = getDayOfWeek(number);
+          document.getElementById("answer").textContent = dayOfWeek ? dayOfWeek : "נא להזין מספר בין 1 ל-7";
+          break;
+        case "4":
+          const monthName = getMonth(number);
+          document.getElementById("answer").textContent = monthName ? monthName : "נא להזין מספר בין 1 ל-12";
+          break;
+        case "5":
+          const letterInput = document.getElementById("letter");
+          const letter = letterInput.value.trim();
+          const isVowelResult = isVowel(letter);
+          document.getElementById("answer").textContent = isVowelResult ? "זו אות עיקרית" : "זו לא אות עיקרית";
+          break;
+        case "6":
+          const grade = getGrade(number);
+          document.getElementById("answer").textContent = "הציון הוא: " + grade;
+          break;
+        default:
+          return;
+      }
+
+      const outputDiv = document.getElementById("output");
+      outputDiv.style.display = "block";
+
+      const numberInputDiv = document.getElementById("number-input");
+      numberInputDiv.style.display = "none";
+    }
+
+    function checkLetter() {
+      const letterInput = document.getElementById("letter");
+      const letter = letterInput.value.trim();
+
+      if (letter.length !== 1 || !/^[a-zA-Z]$/.test(letter)) {
+        document.getElementById("letter-error-message").textContent = "נא להזין אות בודדת באנגלית";
+        return;
+      }
+
+      const letterType = isConsonant(letter) ? "consonant" : "vowel";
+      document.getElementById("answer").textContent = `סוג האות: ${letterType}`;
+
+      const letterInputDiv = document.getElementById("letter-input");
+      letterInputDiv.style.display = "none";
+      const outputDiv = document.getElementById("output");
+      outputDiv.style.display = "block";
+    }
+
+    function reset() {
+      const outputDiv = document.getElementById("output");
+      outputDiv.style.display = "none";
+
+      const numberInputDiv = document.getElementById("number-input");
+      numberInputDiv.style.display = "block";
+
+      const numberInput = document.getElementById("number");
+      numberInput.value = "";
+      document.getElementById("error-message").textContent = "";
+    }
+
+    function isEvenOrOdd(number) {
+      switch (number % 2) {
+        case 0:
+          return "Even";
+        case 1:
+          return "Odd";
+        default:
+          return "Invalid number";
+      }
+    }
+
+    function isNegativeOrPositive(number) {
+      switch (Math.sign(number)) {
+        case -1:
+          return "Negative";
+        case 0:
+          return "Zero";
+        case 1:
+          return "Positive";
+        default:
+          return "Invalid number";
+      }
+    }
+
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    function getDayOfWeek(dayNumber) {
+      if (dayNumber >= 1 && dayNumber <= 7) {
+        return daysOfWeek[dayNumber - 1];
+      } else {
+        return null;
+      }
+    }
+
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function getMonth(monthNumber) {
+      if (monthNumber >= 1 && monthNumber <= 12) {
+        return months[monthNumber - 1];
+      } else {
+        return null;
+      }
+    }
+
+    function isConsonant(letter) {
+    const vowels = ["a", "e", "i", "o", "u", "y"];
+    return !vowels.includes(letter.toLowerCase());
+    }
+
+    function getGrade(score) {
+      if (score >= 0 && score <= 20) {
+        return "D";
+      } else if (score <= 55) {
+        return "C";
+      } else if (score <= 70) {
+        return "B";
+      } else if (score <= 90) {
+        return "A";
+      } else if (score <= 100) {
+        return "A+";
+      } else {
+        return "Invalid score";
+      }
+    }
+
+    function calculate(num1, num2, operation) {
+      switch (operation) {
+        case 1:
+          return num1 + num2;
+        case 2:
+          return num1 - num2;
+        case 3:
+          return num1 / num2;
+        case 4:
+          return num1 * num2;
+        default:
+          return "Invalid operation";
+      }
+    }
+
+    function calculateOperation() {
+      const operationSelect = document.getElementById("operation-select");
+      const selectedOperation = operationSelect.value;
+      const num1Input = document.getElementById("num1");
+      const num2Input = document.getElementById("num2");
+      const operationErrorMessage = document.getElementById("operation-error-message");
+
+      const num1 = parseFloat(num1Input.value);
+      const num2 = parseFloat(num2Input.value);
+
+      if (isNaN(num1) || isNaN(num2)) {
+        operationErrorMessage.textContent = "נא להזין מספרים חוקיים";
+        return;
+      }
+
+      const result = calculate(num1, num2, parseInt(selectedOperation));
+      if (typeof result === "number") {
+        document.getElementById("operation-answer").textContent = "תוצאה: " + result;
+      } else {
+        document.getElementById("operation-answer").textContent = result;
+      }
+
+      document.getElementById("operation-answer").style.display = "block";
+    }
+  </script>
+</body>
+</html>
