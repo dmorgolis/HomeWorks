@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>תרגילי סיכום 2</title>
+</head>
+<body>
+  <h1>Ex. 1 to 7</h1>
+  <p>Functions - פונקציאות</p>
+<script>  
+
+//1. Write a function that receives two parameters of type int.
+//If the first parameter is bigger than the second parameter -> the function should
+//returns the first parameter
+//else -> the function should return the second parameter
+
+1.
+function biggerNumber(a, b) {
+  if (a > b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+ 
+//2. Write a function that receives 2 parameters of type int.
+//If the first parameter is equal to the second parameter -> the function should add 1 to
+//the first parameter and return it.
+
+2.
+function addOneIfEqual(a, b) {
+     if (a === b) {
+       return a + 1;
+     } else {
+       return a;
+     }
+   }
+   
+//3. Write a function that receives four parameters of type int.
+//The function has to return the smaller value between all of them.
+//If one of the parameters is between 1 to 5, then return -1.
+ 
+//.int כתוב פונקציה שמקבלת ארבעה פרמטרים מסוג 
+//הפונקציה צריכה להחזיר את הערך הקטן יותר בין כולם.
+//אם אחד הפרמטרים הוא בין 1 ל 5, ואז להחזיר -1.
+ 
+3.
+function smallestNumber(a, b, c, d) {
+     if (a >= 1 && a <= 5 || b >= 1 && b <= 5 || c >= 1 && c <= 5 || d >= 1 && d <= 5) {
+       return -1;
+     } else {
+       return Math.min(a, b, c, d);
+     }
+   }
+
+3.1
+ function smallestValue(a, b, c, d) {
+     let smallest = a;
+     if (b < smallest) {
+       smallest = b;
+     }
+     if (c < smallest) {
+       smallest = c;
+     }
+     if (d < smallest) {
+       smallest = d;
+     }
+      
+     if (1 <= smallest && smallest <= 5) {
+       return -1;
+     } else {
+       return smallest;
+     }
+   }
+   
+//4.Write a function that receives one parameter of type int.
+//If the number is even then return the string : “even”, otherwise “not even”.
+
+//.int כתוב פונקציה שמקבלת פרמטר אחד מסוג
+//."אם המספר זוגי אז החזר את המחרוזת : "זוגי", אחרת "לא זוגי
+
+4.
+ function isEven(number) {
+     return number % 2 === 0 ? "even" : "not even";
+   }
+   
+4.1
+ function isNumberEven(num) {
+     if (num % 2 === 0) {
+       return "even";
+     } else {
+       return "not even";
+     }
+   }
+   
+//5.White a function that receives 4 parameters of type int.
+//If all the four numbers are equal, the function returns the string “all equals”.
+//If 2 of the four numbers are equals, the function returns the string “only 2 numbers are equals”.
+//If none of the two cases happened, the function returns the string “all numbers not equals”.
+ 
+//.int פונקציה המקבלת 4 פרמטרים מסוג
+//."all equals" - אם כל ארבעת המספרים שווים, הפונקציה מחזירה את המחרוזת
+//."אם 2 מתוך ארבעת המספרים שווים, הפונקציה מחזירה את המחרוזת "רק 2 מספרים שווים
+//."אם אף אחד משני המקרים לא התרחש, הפונקציה מחזירה את המחרוזת "כל המספרים אינם שווים
+
+5.
+function compareNumbers(a, b, c, d) {
+  if (a === b && b === c && c === d) {
+    return "all equals";
+  } else if (a === b && c === d || a === c && b === d || a === d && b === c) {
+    return "only 2 numbers are equals";
+  } else {
+    return "all numbers not equals";
+  }
+}
+ 
+5.1
+function compareNumbers(a, b, c, d) {
+  let count = 0;
+
+  if (a === b) {
+    count++;
+  }
+  if (b === c) {
+    count++;
+  }
+  if (c === d) {
+    count++;
+  }
+  if (d === a) {
+    count++;
+  }
+
+  if (count === 4) {
+    return "all equals";
+  } else if (count === 2) {
+    return "only 2 numbers are equals";
+  } else {
+    return "all numbers not equals";
+  }
+}
+
+//6. Write a function that receives a parameter of type int.
+//The number has to be between 1 to 7 and each number represents each day of the week.
+//The function has to return the specific day that represents the number. If the number
+//is not between 1 to 7, the function has to return the string “Error”.
+//Ex: if the number is 2, the function returns “Monday”, if the number is 3, the function returns “Tuesday”.....
+
+  
+//int כתוב פונקציה שמקבלת פרמטר מסוג
+//המספר חייב להיות בין 1 ל- 7 וכל מספר מייצג כל יום של השבוע
+//הפונקציה צריכה להחזיר את היום הספציפי המייצג את המספר.
+//"אם המספר אינו בין 1 ל -7, הפונקציה צריכה להחזיר את המחרוזת "שגיאה
+
+6.
+function getDayOfWeek(number) {
+  const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  if (1 <= number && number <= 7) {
+    return daysOfTheWeek[number - 1];
+  } else {
+    return "Error";
+  }
+}
+
+6.1
+function getDayOfWeek(num) {
+  switch (num) {
+    case 1:
+      return "Sunday";
+    case 2:
+      return "Monday";
+    case 3:
+      return "Tuesday";
+    case 4:
+      return "Wednesday";
+    case 5:
+      return "Thursday";
+    case 6:
+      return "Friday";
+    case 7:
+      return "Saturday";
+    default:
+      return "Error";
+  }
+}
+
+//7. Write a function that receives a number between 1 to 12.
+//Each number represents each month of the year.
+//The function has to return the number of the days in the month. If the number given
+//is not between 1 to 12, then the functions -1.
+//January, March, May, July, August, October, December -> 31 days in a month.
+//February -> 28 days in a month.
+//April, June, September, November -> 30 days in a month.
+
+
+//.כתוב פונקציה שמקבלת מספר בין 1 ל- 12. כל מספר מייצג כל חודש בשנה
+//הפונקציה צריכה להחזיר את מספר הימים בחודש. אם המספר שניתן הוא לא בין 1 ל 12, אז את הפונקציות -1.
+//ינואר, מרץ, מאי, יולי, אוגוסט, אוקטובר, דצמבר > 31 ימים בחודש.
+//פברואר -> 28 ימים בחודש.
+//אפריל יוני, ספטמבר, נובמבר > 30 יום בחודש.
+
+7.
+function getNumberOfDaysInMonth(monthNumber) {
+    const numberOfDaysInMonth = {
+      1: 31,
+      2: 28,
+      3: 31,
+      4: 30,
+      5: 31,
+      6: 30,
+      7: 31,
+      8: 31,
+      9: 30,
+      10: 31,
+      11: 30,
+      12: 31,
+    };
+    
+    if (1 <= monthNumber && monthNumber <= 12) {
+      return numberOfDaysInMonth[monthNumber];
+    } else {
+      return -1;
+    }
+  }
+  
+
+
+7.1
+const JAN = 31;
+const FEB = 28;
+const MAR = 31;
+const APR = 30;
+const MAY = 31;
+const JUN = 30;
+const JUL = 31;
+const AUG = 31;
+const SEP = 30;
+const OCT = 31;
+const NOV = 30;
+const DEC = 31;
+
+function daysInMonthGlobal(num) {
+  switch (num) {
+    case 1:
+      return JAN;
+    case 2:
+      return FEB;
+    case 3:
+      return MAR;
+    case 4:
+      return APR;
+    case 5:
+      return MAY;
+    case 6:
+      return JUN;
+    case 7:
+      return JUL;
+    case 8:
+      return AUG;
+    case 9:
+      return SEP;
+    case 10:
+      return OCT;
+    case 11:
+      return NOV;
+    case 12:
+      return DEC;
+    default:
+      return -1;
+  }
+}
+
+function daysInMonthLocal(num) {
+  let days;
+  switch (num) {
+    case 1:
+      days = 31;
+      break;
+    case 2:
+      days = 28;
+      break;
+    case 3:
+      days = 31;
+      break;
+    case 4:
+      days = 30;
+      break;
+    case 5:
+      days = 31;
+      break;
+    case 6:
+      days = 30;
+      break;
+    case 7:
+      days = 31;
+      break;
+    case 8:
+      days = 31;
+      break;
+    case 9:
+      days = 30;
+      break;
+    case 10:
+      days = 31;
+      break;
+    case 11:
+      days = 30;
+      break;
+    case 12:
+      days = 31;
+      break;
+    default:
+      days = -1;
+      break;
+  }
+  
+  return days;
+}
+
+//8. (8) Write a function that uses global variables. -  פונקציה המשתמשת במשתנים גלובליים.
+// Global variables
+
+const TAX_RATE = 0.2;
+let totalPrice = 0;
+
+function calculateTotalPrice(price) {
+  totalPrice += price;
+  const tax = totalPrice * TAX_RATE;
+  const total = totalPrice + tax;
+  return total;
+}
+
+8.1
+let counter = 0;
+
+function incrementCounter() {
+  counter++;
+}
+
+function printCounter() {
+  console.log(counter);
+}
+
+//9. Write a function that uses local variables.
+//9  כתוב פונקציה המשתמשת במשתנים מקומיים.
+// Define global variables
+8.
+let num1 = 5;
+let num2 = 10;
+
+function multiplyNumbers() {
+  let result = num1 * num2;
+  return result;
+}
+
+
+9.1 - ממוצע
+function calculateAverage(num1, num2, num3) {
+  let average = (num1 + num2 + num3) / 3;
+  return average;
+}
+
+ </script>
+</body>
+</html>

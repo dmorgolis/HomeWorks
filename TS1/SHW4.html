@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>תרגילי סיכום 4</title>
+    </head>
+    <body>
+<h2>Ex. 1 - כל ימות השבוע</h2>
+    <button onclick="printOriginalArray()">הדפס מערך מקורי</button>
+    <button onclick="printSortedArray()">הדפס מערך ממוין</button>
+    <script>        
+//1 - Create an array of strings containing all the days of the week and print it.
+//צור מערך מחרוזות המכיל את כל ימות השבוע והדפס אותו.
+
+var daysOfWeek = ["1.Sunday - ראשון", "2.Monday - שני", "3.Tuesday - שלישי", "4.Wednesday - רביעי", "5.Thursday - חמישי", "6.Friday - שישי", "7.Saturday - שבת"];
+
+        //3 - Function to print the array - פונקציה למיון המערך והדפסתו.
+        function printArray(arr) {
+            var output = "";
+            for (var i = 0; i < arr.length; i++) {
+                output += arr[i] + "<br>";
+            }
+            document.getElementById("output").innerHTML = output;
+        }
+
+        // Task 2 - 2 - Sort the array and print it. - מיין את המערך והדפס אותו.
+        function printOriginalArray() {
+            printArray(daysOfWeek);
+        }
+
+        function printSortedArray() {
+            var sortedDays = daysOfWeek.slice().sort();
+            printArray(sortedDays);
+        }
+    </script>
+    <div id="output"></div>
+<br>    
+
+
+<h1>Ex. 2 - מערך ואינדקס</h1>
+<script>
+    //2. - best <body>
+function printValueByIndex(arr2, index) {
+    if (index < 0 || index >= arr2.length) {
+      document.write(`<br> index: מצטערים, אין ערך במערך עבור מספר ${index} <br>`);
+    } else {
+      document.write(`הערך באינדקס ${index} הוא ${arr2[index]}`);
+    }
+  }
+
+  // Example array
+  var myArray2 = [10, 20, 30, 40, 50];
+  document.write(`המערך הוא ${myArray2} <br><br>`);
+
+  // Print the value of each index in the array
+  for (let i = 0; i < myArray2.length; i++) {
+    printValueByIndex(myArray2, i);
+    document.write("<br>");
+  }
+
+  // Check an index that is out of range
+  var indexToCheck = 6;
+  printValueByIndex(myArray2, indexToCheck);
+
+    //2.1 - good
+/*    function printValueByIndex(arr, number) {
+        if (number >= 0 && number < arr.length) {
+          document.write("Value at index " + number + ": " + arr[number]);
+        } else {
+          document.write("Sorry, no value in the array for index number: " + number);
+        }
+        }*/
+</script>
+<h1>Ex. 3 - האם כל הערכים הם אי-זוגיים?</h1>
+
+<button onclick="changeArray3()">שנה מערך</button>
+<p id="array3"></p>
+<p id="result3"></p>
+
+<script>
+     //צור פונקציה שמקבלת מערך מספרים שלמים. 
+     //אם כל הערכים של המערך הם אי-זוגיים, 
+     //"not odds" אחרת "odds" הפונקציה מחזירה
+
+    //3 - Best  <body>
+
+  // Define the global variable
+  const arr3 = [];
+
+  // Generate a random array
+  function changeArray3() {
+    arr3.length = 0;
+    for (let i = 0; i < 5; i++) {
+      arr3.push(Math.floor(Math.random() * 100) + 1);
+    }
+
+    // Display the array
+    const arrayElement = document.getElementById("array3");
+    arrayElement.innerHTML = "מערך: " + arr3.join(" ");
+
+    // Check if all the values are odd
+    const result = checkIfAllOdd(arr3);
+
+    // Display the result
+    const resultElement = document.getElementById("result3");
+    resultElement.innerHTML = "תוצאה: " + result;
+  }
+
+  function checkIfAllOdd(arr3) {
+    for (let i = 0; i < arr3.length; i++) {
+      if (arr3[i] % 2 === 0) {
+        return "לא הכל אי זוגי";
+      }
+    }
+    return "הכל אי זוגי";
+  }
+
+  // Call changeArray() to display the initial array
+  changeArray3();
+</script>
+<br>
+
+<h1>Ex. 4 - הוספת 5 למערך </h1>
+<button onclick="generateRandomArray()">קבלת מערך תרגיל 4</button>
+
+<div style="display: flex;">
+  <div style="margin-right: 20px;">
+    <p id="Ferstarray"></p>
+  </div>
+  <div>
+    <p id="Carray4"></p>
+  </div>
+</div>
+<script>
+  var initialArray = [];
+
+  function generateRandomArray() {
+    initialArray = [];
+    var modifiedArray = [];
+    var initialArrayText = "";
+    var modifiedArrayText = "";
+    
+    for (var i = 0; i < 10; i++) {
+      var randomNumber = Math.floor(Math.random() * 20);
+      if (randomNumber < 10) {
+        initialArray.push(randomNumber);
+        initialArrayText += "<span style='color:red'>" + randomNumber + "</span> ";
+        modifiedArray.push(randomNumber + 5);
+        modifiedArrayText += "<span style='color:red'>" + (randomNumber + 5) + "</span> ";
+      } else {
+        initialArray.push(randomNumber);
+        initialArrayText += randomNumber + " ";
+        modifiedArray.push(randomNumber);
+        modifiedArrayText += randomNumber + " ";
+      }
+    }
+    
+    document.getElementById("Ferstarray").innerHTML = " המערך ללא הוספת 5 הוא: " + initialArrayText;
+    document.getElementById("Carray4").innerHTML = "המערך לאחר השינוי: " + modifiedArrayText;
+    document.getElementById("result4").innerHTML = "";
+  }
+</script>
+<br>
+
+
+<h1>Ex. 5 -  השני נמצא ב  - מערך המספרים השלמים</h1>
+  <button onclick="findValue()">מצא את המספר</button>
+  <div id="result"></div>
+
+  <script>
+    function findValue() {
+      let inputArray = prompt("הזן את מערך המספרים השלמים (מופרדים בפסיקים): ");
+      let num = parseInt(prompt("הזן מספר שלם: "));
+      let arr = inputArray.split(',').map(item => parseInt(item.trim()));
+      let result = findValueInArray(arr, num);
+
+      document.getElementById("result").innerHTML = "<p> המספר: <b>" + result + "</b></p>";
+    }
+
+    function findValueInArray(arr, num) {
+      if (arr.includes(num)) {
+        return "נמצא";
+      } else {
+        return "לא נמצא";
+      }
+    }
+  </script>
+<br>
+
+<h1>Ex. 6 - בדיקת מערך</h1>
+<div class="container">
+    <input type="text" id="arrayInput" placeholder="הכנס מערך בפורמט: 1,2,3">
+  <br>
+  <input type="number" id="num1Input" placeholder="הכנס מספר ראשון">
+  <input type="number" id="num2Input" placeholder="הכנס מספר שני">
+  <br>
+  <button id="checkButton">בדוק</button>
+  <p id="resultText"></p>
+</div>
+<script>
+//צור פונקציה שמקבלת מערך ו- 2 מספרים של מספר שלם.
+//אם הערך הראשון של המערך שווה לפרמטר הראשון והערך האחרון של המערך הוא
+//שווה לפרמטר השני ואז הפונקציה מחזירה נכון, אחרת, הפונקציה מחזירה לא נכון.
+    
+    document.addEventListener("DOMContentLoaded", function () {
+    const checkButton = document.getElementById("checkButton");
+    const resultText = document.getElementById("resultText");
+
+    checkButton.addEventListener("click", function () {
+        const arrayInput = document.getElementById("arrayInput").value;
+        const num1Input = parseInt(document.getElementById("num1Input").value);
+        const num2Input = parseInt(document.getElementById("num2Input").value);
+
+        const array = arrayInput.split(",").map(num => parseInt(num));
+
+        if (checkArray(array, num1Input, num2Input) === "found") {
+            resultText.textContent = "נמצא";
+        } else {
+            resultText.textContent = "לא נמצא";
+        }
+    });
+
+    function checkArray(array, num1, num2) {
+        if (array[0] === num1 && array[array.length - 1] === num2) {
+            return "found";
+        } else {
+            return "not found";
+        }
+    }
+});
+
+     
+</script>
+
+
+<script>//Ex. 6.1 - אופציה נוספת
+  function checkValues(arr, num1, num2) {
+      if (arr[0] === num1 && arr[arr.length - 1] === num2) {
+          return "נמצא";
+      } else {
+          return "לא נמצא";
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+      const checkButton = document.getElementById("checkButton");
+      const resultText = document.getElementById("resultText");
+
+      checkButton.addEventListener("click", function () {
+          const arrayInput = document.getElementById("arrayInput").value;
+          const num1Input = parseInt(document.getElementById("num1Input").value);
+          const num2Input = parseInt(document.getElementById("num2Input").value);
+
+          const array = arrayInput.split(",").map(num => parseInt(num));
+
+          const result = checkValues(array, num1Input, num2Input);
+          resultText.textContent = result;
+      });
+  });
+</script>
+<h1>Ex. 7.M - Update Array Elements - טווחי מערך</h1>
+<p>בדוק את ערכי המערך:</p>
+
+<button onclick="checkArray7()">בדוק מערך 7</button>
+<button onclick="updateAutomaticArray7()">קבלת מערך חדש</button>
+<p id="result7"></p>
+
+<script>
+let inputArray7 = [30, 40, 20, 10];
+
+  function updateArrayElements7(arr) {
+    arr.forEach(val => {
+      if (val < 50) {
+        return "קטן מ 50";
+      } else if (val > 50 && val < 101) {
+        return "בין 51 ל 100";
+      } else if (val > 100 && val < 201) {
+        return "בין 101 ל 200";
+      } else if (val > 200) {
+        return "מעל 200";
+      } else {
+        return "אין תנאי מתקיים";
+      }
+    });
+  }
+  
+  function updateAutomaticArray7() {
+    const newArray = inputArray7.slice();
+    newArray[0] = 100;
+    newArray[1] = 150;
+    newArray[2] = 80;
+    newArray[3] = 90;
+    inputArray7 = newArray.copy();
+    document.getElementById("result7").innerHTML = "מערך עודכן אוטומטית";
+  }
+  
+  function checkArray7() {
+    const result = updateArrayElements7(inputArray7);
+    document.getElementById("result7").innerHTML = result;
+  }
+  
+</script>
+</body>
+</html>
