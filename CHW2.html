@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>בדיקת מספרים זהים</title>
+</head>
+<body>
+  <script>
+    let numbers = []; // מערך לאחסון המספרים שנקלטו מהמשתמש
+
+    while (true) {
+      let input = prompt("נא להזין מספר או להזין -99 כדי לסיים");
+
+      // המרת הקלט למספר שלם
+      let number = parseInt(input);
+
+      // בדיקה אם הקלט הוא -99
+      if (number === -99) {
+        break; // סיום הלולאה אם הוקלט -99
+      }
+
+      numbers.push(number); // הוספת המספר למערך
+
+      // בדיקה אם יש שני מספרים זהים במערך
+      if (hasDuplicate(numbers)) {
+        alert("נמצאו שני מספרים זהים ברצף!");
+        break; // סיום הלולאה אם נמצאו שני מספרים זהים
+      }
+    }
+
+    // פונקציה לבדיקת קיום מספר זהה במערך
+    function hasDuplicate(arr) {
+      for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[i] === arr[j]) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>

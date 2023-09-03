@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>רשימת סרטים</title>
+  <style>
+  /*body {
+    background-image: url('https://wallpapercave.com/wp/wp9912958.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    }*/
+   
+h1 {
+  flex-basis: 100%;
+  text-align: center;
+  color: #c50808;
+  background-color: black;
+  margin-bottom: 50px;
+}
+    /* הוספת סרט */
+    .add-movie {
+      flex-basis: 10%;
+      margin-right: 30px;
+      margin-bottom: 30px;
+    }
+
+    /* רשימת סרטים */
+    .movie-list {
+      flex-basis: 85%;
+      background-color: black;
+      margin-bottom: 20px;
+    }
+    
+.filterYear {
+  flex-basis: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filterYear input[type="text"] {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(200, 18, 18, 0.2);
+  width: 50%;
+  max-width: 100px;
+}
+  .filterYear button {
+    margin-left: 10px;
+  }
+    </style>
+
+</head>
+
+<body>  
+  <h1>רשימת סרטים</h1>
+  
+  <!-- טופס להוספת סרטים -->
+  <div>
+    <input type="text" id="movieName" placeholder="שם הסרט" required>
+    <br>
+    <input type="number" id="movieYear" placeholder="שנת הסרט" required>
+    <br>
+    <input type="text" id="mainActor" placeholder="שחקן ראשי" required>
+    <br>
+    <input type="text" id="genre" placeholder="ז'אנר" required>
+    <br>
+    <input type="text" id="movieImage" placeholder="קישור לתמונה">
+    <br>
+    <button onclick="addMovie()">הוסף סרט</button>
+  </div>
+
+  <!-- טופס לסינון סרטים לפי שנה -->
+  <div>
+    <input type="text" id="searchMovie" placeholder="חפש לפי שם הסרט" oninput="filterMovies()">
+  </div>
+  <div>
+    <input type="number" id="filterYear" placeholder="שנת הסינון">
+    <button onclick="filterMovies()">סנן סרטים</button>
+  </div>
+
+  <!-- תמונה להצגה ברגע שhover על השורה של השם של הסרט -->
+  <img id="movieImagePreview" src="" style="position: absolute; top: 0; left: 0; display: none; width: 100px; height: auto;">
+
+  <!-- טבלת הסרטים -->
+  <table id="moviesTable">
+    <thead>
+      <tr>
+        <th>שם הסרט</th>
+        <th>שנת הפקה</th>
+        <th>שחקנים ראשיים</th>
+        <th>ז'אנר</th>
+        <th>תמונה</th>
+        <th>מחיקה</th>
+      </tr>
+    </thead>
+    <tbody id="moviesTableBody">
+    </tbody>
+  </table>
+
+  <!-- קובץ JS עם הלוגיקה של הדף -->
+  <script src="./Sratim.js"></script>
+
+</body>
+
+</html>

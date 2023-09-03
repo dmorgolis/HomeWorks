@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+h1 {
+  flex-basis: 100%;
+  text-align: center;
+  color: #c50808;
+  background-color: black;
+  margin-bottom: 50px;
+}
+
+.search-box {
+  flex-basis: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-box input[type="text"] {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(200, 18, 18, 0.2);
+  width: 50%;
+  max-width: 100px;
+}
+
+.search-box input[type="namber"] {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(200, 18, 18, 0.2);
+  width: 50%;
+  max-width: 100px;
+}
+  .search-box button {
+    margin-left: 10px;
+  }
+  
+  .add-movie {
+    flex-basis: calc(10% - 20px);
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .add-movie input[type="text"],
+  .add-movie input[type="number"],
+  .add-movie button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+  
+  .movie-list {
+    flex-basis: calc(50% - 20px);
+    margin-bottom: 20px;
+    flex-flow: row wrap;
+  }
+  
+  .movie-list table {
+    width: 100%;
+  }
+  
+  .movie-list th,
+  .movie-list td {
+    padding: 10px;
+    text-align: center;
+    background-color: #c50808;
+  }
+
+  .movie-list image {
+    background-color: black;
+  }
+  
+  .movie-image {
+    flex-basis: calc(20% - 20px);
+    margin-left: 20px;
+    height: calc(100vh - 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .movie-image img {
+    position: center;  
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+  }
+  

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        td.red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <label for="numberInput">הזן מספר (1-100): </label>
+    <input type="number" id="numberInput" min="1" max="100">
+    <button onclick="searchNumber()">הצג</button>
+    <button onclick="generateMatrix()">צור מטריצה</button>
+    <p id="result"></p>
+
+    <script>
+        let matrix = [];
+        const matrixSize = 10;
+        let generatedNumbers = [];
+
+        // Function to generate a random number between min and max, without repeating
+        function getRandomNumber(min, max) {
+            let number;
+            do {
+                number = Math.floor(Math.random() * (max - min + 1) + min);
+            } while (generatedNumbers.includes(number));
+            generatedNumbers.push(number);
+            return number;
+        }
+
+        // Function to create and display the matrix
+        function generateMatrix() {
+            matrix = [];
+            generatedNumbers = [];
+            for (let i = 0; i < matrixSize; i++) {
+                const row = [];
+                for (let j = 0; j < matrixSize; j++) {
+                    row.push(getRandomNumber(1, 100));
+                }
+                matrix.push(row);
+            }
+            displayMatrix();
+        }
+
+        // Function to display the matrix
+        function displayMatrix() {
+            const table = document.createElement('table');
+            table.id = "matrixTable";
+            for (let i = 0; i < matrixSize; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < matrixSize; j++) {
+                    const cell = document.createElement('td');
+                    cell.id = `cell-${i}-${j}`;
+                    cell.textContent = matrix[i][j];
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            const oldTable = document.getElementById("matrixTable");
+            if (oldTable) {
+                oldTable.parentNode.removeChild(oldTable);
+            }
+            document.body.appendChild(table);
+        }
+
+        // Function to show the positions of the entered number
+        function searchNumber() {
+            const searchInput = document.getElementById("numberInput");
+            const searchNumber = parseInt(searchInput.value);
+            if (!isNaN(searchNumber)) {
+                const positions = [];
+                for (let i = 0; i < matrixSize; i++) {
+                    for (let j = 0; j < matrixSize; j++) {
+                        if (parseInt(matrix[i][j]) === searchNumber) {
+                            positions.push([i, j]);
+                        }
+                    }
+                }
+                if (positions.length > 0) {
+                    highlightCells(positions);
+                    document.getElementById("result").innerText = `נמצאו ${positions.length} מופעים של המספר ${searchNumber}.`;
+                } else {
+                    document.getElementById("result").innerText = `לא נמצאו מופעים של המספר ${searchNumber}.`;
+                }
+            }
+        }
+
+        // Function to highlight the cells with the entered number
+        function highlightCells(positions) {
+            const table = document.getElementById('matrixTable');
+            for (let i = 0; i < positions.length; i++) {
+                const row = positions[i][0];
+                const col = positions[i][1];
+                const cell = table.rows[row].cells[col];
+                cell.classList.add('red');
+            }
+        }
+
+        // Function to check input value and display message
+        function checkInput() {
+            const inputElement = document.getElementById("numberInput");
+            const inputValue = parseInt(inputElement.value);
+            const resultElement = document.getElementById("result");
+            if (!isNaN(inputValue)) {
+                if (inputValue >= 1 && inputValue <= 100) {
+                    resultElement.innerText = "";
+                } else {
+                    resultElement.innerText = "מספר מחוץ לטווח (1-100)";
+                }
+            } else {
+                resultElement.innerText = "";
+            }
+        }
+
+        // Event listener to check input value on every change
+        const inputElement = document.getElementById("numberInput");
+        inputElement.addEventListener("input", checkInput);
+    </script>
+</body>
+</html>
