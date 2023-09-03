@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>רשימת סרטים</title>
+  <link rel="stylesheet" href="SFB.css">
+  <link rel="stylesheet" href="ITF.Css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Margolis Films Productions</h1>
+    
+   <div class="box">
+
+    <div class="S-box">
+      <input type="text" id="searchMovie" placeholder="חפש לפי שם הסרט" oninput="filterMovies()">
+    </div>
+    <div div class="S-box">
+      <input type="number" id="filterYear" placeholder="שנת הסינון">
+    </div>  
+      <div div class="S-button">
+      <button onclick="filterMovies()">חפש</button>
+    </div>
+   </div>
+  
+    <!-- הוספת סרט -->
+    <div class="add-movie">
+      <input type="text" id="movieName" placeholder="שם הסרט" required>
+      <input type="number" id="movieYear" placeholder="שנת הסרט" required>
+      <input type="text" id="mainActor" placeholder="שחקן ראשי" required>
+      <input type="text" id="genre" placeholder="ז'אנר" required>
+      <input type="text" id="movieImage" placeholder="קישור לתמונה">
+      <button class="bookmarkBtn" onclick="addMovie()">הוסף סרט</button>
+    </div>
+
+    <!-- רשימת סרטים -->
+    <div class="movie-list">
+      <table>
+        <thead>
+          <tr>
+            <th>שם הסרט</th>
+            <th>שנת הסרט</th>
+            <th>שחקן ראשי</th>
+            <th>ז'אנר</th>
+            <th>פעולות</th>
+            <th>תמונה</th>
+          </tr>
+        </thead>
+        <tbody id="moviesTableBody">
+          <!-- כאן יופיעו הסרטים -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- תמונות של הסרטים -->
+    <div class="movie-image">
+      <img id="movieImagePreview" src="">
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="Films2.js"></script>
+
+</body>
+
+</html>
